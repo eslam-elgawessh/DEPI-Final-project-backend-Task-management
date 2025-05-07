@@ -37,6 +37,23 @@
   <li><strong>Update Task</strong>: <code>PUT https://innovative-flow-production.up.railway.app/api/tasks/:id</code></li>
   <li><strong>Delete Task</strong>: <code>DELETE https://innovative-flow-production.up.railway.app/api/tasks/:id</code></li>
 </ul>
+<h2>📦 Data Models</h2>
+
+<h3>🧑‍💻 User</h3>
+<ul>
+  <li><strong>username</strong>: String (required, unique, minLength: 3)</li>
+  <li><strong>password</strong>: String (required, minLength: 6)</li>
+  <li><strong>timestamps</strong>: createdAt, updatedAt</li>
+</ul>
+
+<h3>📝 Task</h3>
+<ul>
+  <li><strong>userId</strong>: ObjectId (ref: User, required)</li>
+  <li><strong>title</strong>: String (required)</li>
+  <li><strong>description</strong>: String (optional)</li>
+  <li><strong>status</strong>: String (one of: "pending", "in-progress", "done") – default: "pending"</li>
+  <li><strong>timestamps</strong>: createdAt, updatedAt</li>
+</ul>
 
 </body>
 </html>
