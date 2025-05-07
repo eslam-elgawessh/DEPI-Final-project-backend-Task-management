@@ -2,58 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Task Management API</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-    h1 {
-      color: #333;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    code {
-      background-color: #eee;
-      padding: 3px 6px;
-      border-radius: 4px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management API Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🚀 Task Management API</h1>
-  <p>Welcome! Here's a list of available API endpoints:</p>
-<ul>
-  <li><strong>Signup</strong>: <code>POST https://innovative-flow-production.up.railway.app/api/signup</code></li>
-  <li><strong>Login</strong>: <code>POST https://innovative-flow-production.up.railway.app/api/login</code></li>
-  <li><strong>Tasks (Get All)</strong>: <code>GET https://innovative-flow-production.up.railway.app/api/tasks</code></li>
-  <li><strong>Create Task</strong>: <code>POST https://innovative-flow-production.up.railway.app/api/tasks</code></li>
-  <li><strong>Update Task</strong>: <code>PUT https://innovative-flow-production.up.railway.app/api/tasks/:id</code></li>
-  <li><strong>Delete Task</strong>: <code>DELETE https://innovative-flow-production.up.railway.app/api/tasks/:id</code></li>
-</ul>
-<h2>📦 Data Models</h2>
-
-<h3>🧑‍💻 User</h3>
-<ul>
-  <li><strong>username</strong>: String (required, unique, minLength: 3)</li>
-  <li><strong>password</strong>: String (required, minLength: 6)</li>
-  <li><strong>timestamps</strong>: createdAt, updatedAt</li>
-</ul>
-
-<h3>📝 Task</h3>
-<ul>
-  <li><strong>userId</strong>: ObjectId (ref: User, required)</li>
-  <li><strong>title</strong>: String (required)</li>
-  <li><strong>description</strong>: String (optional)</li>
-  <li><strong>status</strong>: String (one of: "pending", "in-progress", "done") – default: "pending"</li>
-  <li><strong>timestamps</strong>: createdAt, updatedAt</li>
-</ul>
-
+  <header>
+    <div class="header-content">
+      <h1>
+        <span class="icon">🚀</span>
+        Task Management API
+      </h1>
+      <p class="tagline">Robust API for managing tasks with user authentication and CRUD operations</p>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="card">
+      <h2>API Endpoints</h2>
+      <p>All endpoints require authentication except for signup and login.</p>
+      
+      <ul class="endpoint-list">
+        <li class="endpoint-item">
+          <span class="endpoint-method method-post">POST</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/signup</span>
+          <span>User registration</span>
+        </li>
+        <li class="endpoint-item">
+          <span class="endpoint-method method-post">POST</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/login</span>
+          <span>User authentication</span>
+        </li>
+        <li class="endpoint-item">
+          <span class="endpoint-method method-get">GET</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/tasks</span>
+          <span>Get all tasks for authenticated user</span>
+        </li>
+        <li class="endpoint-item">
+          <span class="endpoint-method method-post">POST</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/tasks</span>
+          <span>Create new task</span>
+        </li>
+        <li class="endpoint-item">
+          <span class="endpoint-method method-put">PUT</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/tasks/:id</span>
+          <span>Update existing task</span>
+        </li>
+        <li class="endpoint-item">
+          <span class="endpoint-method method-delete">DELETE</span>
+          <span class="endpoint-path">https://innovative-flow-production.up.railway.app/api/tasks/:id</span>
+          <span>Delete task</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="model-section">
+      <h2>Data Models</h2>
+      
+      <div class="model-card">
+        <h3>User Model</h3>
+        <table class="model-properties">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Constraints</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="property-name">username</td>
+              <td class="property-type">String</td>
+              <td>required, unique, minLength: 3</td>
+            </tr>
+            <tr>
+              <td class="property-name">password</td>
+              <td class="property-type">String</td>
+              <td>required, minLength: 6</td>
+            </tr>
+            <tr>
+              <td class="property-name">createdAt</td>
+              <td class="property-type">Date</td>
+              <td>auto-generated</td>
+            </tr>
+            <tr>
+              <td class="property-name">updatedAt</td>
+              <td class="property-type">Date</td>
+              <td>auto-generated</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="model-card">
+        <h3>Task Model</h3>
+        <table class="model-properties">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Constraints</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="property-name">userId</td>
+              <td class="property-type">ObjectId</td>
+              <td>required (ref: User)</td>
+            </tr>
+            <tr>
+              <td class="property-name">title</td>
+              <td class="property-type">String</td>
+              <td>required</td>
+            </tr>
+            <tr>
+              <td class="property-name">description</td>
+              <td class="property-type">String</td>
+              <td>optional</td>
+            </tr>
+            <tr>
+              <td class="property-name">status</td>
+              <td class="property-type">String</td>
+              <td>enum: ["pending", "in-progress", "done"], default: "pending"</td>
+            </tr>
+            <tr>
+              <td class="property-name">createdAt</td>
+              <td class="property-type">Date</td>
+              <td>auto-generated</td>
+            </tr>
+            <tr>
+              <td class="property-name">updatedAt</td>
+              <td class="property-type">Date</td>
+              <td>auto-generated</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 Task Management API | Version 1.0.0</p>
+    </div>
+  </div>
 </body>
 </html>
