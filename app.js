@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
 
@@ -22,16 +23,12 @@ mongoose.connect('mongodb+srv://eslam:eslam123123@cluster0.rybkvnr.mongodb.net/?
 app.use("/api", authRoutes);
 app.use("/api", taskRoutes);
 
-const path = require('path');
 
-// خليه يشوف ملفات static من مجلد public
+
 app.use(express.static(path.join(__dirname, 'public')));
-
-// لما يطلب /api، ابعتله ملف api.html
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'api.html'));
 });
-
 
 
 
